@@ -71,10 +71,11 @@ stages:
               backendAzureRmKey: '$(bkstrgkey)'
           # plan
           - task: TerraformTaskV4@4
-            displayName: Plan Terraform Deployment
+            displayName: Plan Terraform Deployment            
             inputs:
               provider: 'azurerm'
               command: 'plan'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/1RG1'
               environmentServiceNameAzureRM: 'DevTestServiceConnection'
 
   # Approve
@@ -118,6 +119,7 @@ stages:
             inputs:
               provider: 'azurerm'
               command: 'apply'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/1RG1'
               environmentServiceNameAzureRM: 'DevTestServiceConnection'
     1RG2.Name
 
@@ -146,10 +148,11 @@ stages:
               backendAzureRmKey: '$(bkstrgkey)'
           # plan
           - task: TerraformTaskV4@4
-            displayName: Plan Terraform Deployment
+            displayName: Plan Terraform Deployment            
             inputs:
               provider: 'azurerm'
               command: 'plan'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/1RG2'
               environmentServiceNameAzureRM: 'DevTestServiceConnection'
 
   # Approve
@@ -193,6 +196,7 @@ stages:
             inputs:
               provider: 'azurerm'
               command: 'apply'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/1RG2'
               environmentServiceNameAzureRM: 'DevTestServiceConnection'
     2vnet1.Name
 
@@ -221,10 +225,11 @@ stages:
               backendAzureRmKey: '$(bkstrgkey)'
           # plan
           - task: TerraformTaskV4@4
-            displayName: Plan Terraform Deployment
+            displayName: Plan Terraform Deployment            
             inputs:
               provider: 'azurerm'
               command: 'plan'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/2vnet1'
               environmentServiceNameAzureRM: 'DevTestServiceConnection'
 
   # Approve
@@ -268,6 +273,7 @@ stages:
             inputs:
               provider: 'azurerm'
               command: 'apply'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/2vnet1'
               environmentServiceNameAzureRM: 'DevTestServiceConnection'
     2vnet2.Name
 
@@ -296,10 +302,11 @@ stages:
               backendAzureRmKey: '$(bkstrgkey)'
           # plan
           - task: TerraformTaskV4@4
-            displayName: Plan Terraform Deployment
+            displayName: Plan Terraform Deployment            
             inputs:
               provider: 'azurerm'
               command: 'plan'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/2vnet2'
               environmentServiceNameAzureRM: 'DevTestServiceConnection'
 
   # Approve
@@ -343,4 +350,5 @@ stages:
             inputs:
               provider: 'azurerm'
               command: 'apply'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/2vnet2'
               environmentServiceNameAzureRM: 'DevTestServiceConnection'
