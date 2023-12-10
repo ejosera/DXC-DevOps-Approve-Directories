@@ -123,8 +123,8 @@ stages:
 
   - stage: "plan_1RG2"
     displayName: plan
-    condition: succeeded('tfvalidate')
-    dependsOn: tfvalidate
+    condition: succeeded('tfdeploy_1RG1')
+    dependsOn: tfdeploy_1RG1
     jobs:
       - job: plan
         steps:
@@ -199,8 +199,8 @@ stages:
 
   - stage: "plan_2vnet1"
     displayName: plan
-    condition: succeeded('tfvalidate')
-    dependsOn: tfvalidate
+    condition: succeeded('tfdeploy_1RG2')
+    dependsOn: tfdeploy_1RG2
     jobs:
       - job: plan
         steps:
@@ -275,8 +275,8 @@ stages:
 
   - stage: "plan_2vnet2"
     displayName: plan
-    condition: succeeded('tfvalidate')
-    dependsOn: tfvalidate
+    condition: succeeded('tfdeploy_2vnet1')
+    dependsOn: tfdeploy_2vnet1
     jobs:
       - job: plan
         steps:
