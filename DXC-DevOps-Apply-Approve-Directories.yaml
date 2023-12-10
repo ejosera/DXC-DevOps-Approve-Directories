@@ -44,11 +44,40 @@ stages:
               provider: 'azurerm'
               command: 'validate'
 
+  - stage: "tfvalidate_1RG1"
+    condition: succeeded('tfvalidate')
+    dependsOn: tfvalidate
+    jobs:
+      - job: validate
+        continueOnError: false
+        steps:
+          # install
+          - task: TerraformInstaller@1
+            displayName: tfinstall
+            inputs:
+              terraformVersion: 'latest'
+          # init
+          - task: TerraformTaskV4@4
+            displayName: init
+            inputs:
+              provider: 'azurerm'
+              command: 'init'
+              backendServiceArm: 'Visual Studio Enterprise(4abab78e-cc44-4dc6-b6c0-35280c169a76)'
+              backendAzureRmResourceGroupName: '$(bkstrgrg)'
+              backendAzureRmStorageAccountName: '$(bkstrg)'
+              backendAzureRmContainerName: '$(bkcontainer)'
+              backendAzureRmKey: '$(bkstrgkey)'
+          # validate
+          - task: TerraformTaskV4@4
+            displayName: validate
+            inputs:
+              provider: 'azurerm'
+              command: 'validate'
 
   - stage: "plan_1RG1"
     displayName: plan
-    condition: succeeded('tfvalidate')
-    dependsOn: tfvalidate
+    condition: succeeded('tfvalidate_1RG1')
+    dependsOn: "tfvalidate_1RG1"
     jobs:
       - job: plan
         steps:
@@ -120,11 +149,40 @@ stages:
               command: 'apply'
               workingDirectory: '$(System.DefaultWorkingDirectory)/1RG1'
               environmentServiceNameAzureRM: 'DevTestServiceConnection'
+  - stage: "tfvalidate_1RG2"
+    condition: succeeded('tfdeploy_1RG1')
+    dependsOn: tfdeploy_1RG1
+    jobs:
+      - job: validate
+        continueOnError: false
+        steps:
+          # install
+          - task: TerraformInstaller@1
+            displayName: tfinstall
+            inputs:
+              terraformVersion: 'latest'
+          # init
+          - task: TerraformTaskV4@4
+            displayName: init
+            inputs:
+              provider: 'azurerm'
+              command: 'init'
+              backendServiceArm: 'Visual Studio Enterprise(4abab78e-cc44-4dc6-b6c0-35280c169a76)'
+              backendAzureRmResourceGroupName: '$(bkstrgrg)'
+              backendAzureRmStorageAccountName: '$(bkstrg)'
+              backendAzureRmContainerName: '$(bkcontainer)'
+              backendAzureRmKey: '$(bkstrgkey)'
+          # validate
+          - task: TerraformTaskV4@4
+            displayName: validate
+            inputs:
+              provider: 'azurerm'
+              command: 'validate'
 
   - stage: "plan_1RG2"
     displayName: plan
-    condition: succeeded('tfdeploy_1RG1')
-    dependsOn: tfdeploy_1RG1
+    condition: succeeded('tfvalidate_1RG2')
+    dependsOn: "tfvalidate_1RG2"
     jobs:
       - job: plan
         steps:
@@ -196,11 +254,40 @@ stages:
               command: 'apply'
               workingDirectory: '$(System.DefaultWorkingDirectory)/1RG2'
               environmentServiceNameAzureRM: 'DevTestServiceConnection'
+  - stage: "tfvalidate_2vnet1"
+    condition: succeeded('tfdeploy_1RG2')
+    dependsOn: tfdeploy_1RG2
+    jobs:
+      - job: validate
+        continueOnError: false
+        steps:
+          # install
+          - task: TerraformInstaller@1
+            displayName: tfinstall
+            inputs:
+              terraformVersion: 'latest'
+          # init
+          - task: TerraformTaskV4@4
+            displayName: init
+            inputs:
+              provider: 'azurerm'
+              command: 'init'
+              backendServiceArm: 'Visual Studio Enterprise(4abab78e-cc44-4dc6-b6c0-35280c169a76)'
+              backendAzureRmResourceGroupName: '$(bkstrgrg)'
+              backendAzureRmStorageAccountName: '$(bkstrg)'
+              backendAzureRmContainerName: '$(bkcontainer)'
+              backendAzureRmKey: '$(bkstrgkey)'
+          # validate
+          - task: TerraformTaskV4@4
+            displayName: validate
+            inputs:
+              provider: 'azurerm'
+              command: 'validate'
 
   - stage: "plan_2vnet1"
     displayName: plan
-    condition: succeeded('tfdeploy_1RG2')
-    dependsOn: tfdeploy_1RG2
+    condition: succeeded('tfvalidate_2vnet1')
+    dependsOn: "tfvalidate_2vnet1"
     jobs:
       - job: plan
         steps:
@@ -272,11 +359,40 @@ stages:
               command: 'apply'
               workingDirectory: '$(System.DefaultWorkingDirectory)/2vnet1'
               environmentServiceNameAzureRM: 'DevTestServiceConnection'
+  - stage: "tfvalidate_2vnet2"
+    condition: succeeded('tfdeploy_2vnet1')
+    dependsOn: tfdeploy_2vnet1
+    jobs:
+      - job: validate
+        continueOnError: false
+        steps:
+          # install
+          - task: TerraformInstaller@1
+            displayName: tfinstall
+            inputs:
+              terraformVersion: 'latest'
+          # init
+          - task: TerraformTaskV4@4
+            displayName: init
+            inputs:
+              provider: 'azurerm'
+              command: 'init'
+              backendServiceArm: 'Visual Studio Enterprise(4abab78e-cc44-4dc6-b6c0-35280c169a76)'
+              backendAzureRmResourceGroupName: '$(bkstrgrg)'
+              backendAzureRmStorageAccountName: '$(bkstrg)'
+              backendAzureRmContainerName: '$(bkcontainer)'
+              backendAzureRmKey: '$(bkstrgkey)'
+          # validate
+          - task: TerraformTaskV4@4
+            displayName: validate
+            inputs:
+              provider: 'azurerm'
+              command: 'validate'
 
   - stage: "plan_2vnet2"
     displayName: plan
-    condition: succeeded('tfdeploy_2vnet1')
-    dependsOn: tfdeploy_2vnet1
+    condition: succeeded('tfvalidate_2vnet2')
+    dependsOn: "tfvalidate_2vnet2"
     jobs:
       - job: plan
         steps:
