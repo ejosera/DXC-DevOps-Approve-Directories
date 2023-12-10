@@ -44,7 +44,6 @@ stages:
               provider: 'azurerm'
               command: 'validate'
 
-    1RG1.Name
 
   - stage: plan
     displayName: plan
@@ -121,7 +120,6 @@ stages:
               command: 'apply'
               workingDirectory: '$(System.DefaultWorkingDirectory)/1RG1'
               environmentServiceNameAzureRM: 'DevTestServiceConnection'
-    1RG2.Name
 
   - stage: plan
     displayName: plan
@@ -198,7 +196,6 @@ stages:
               command: 'apply'
               workingDirectory: '$(System.DefaultWorkingDirectory)/1RG2'
               environmentServiceNameAzureRM: 'DevTestServiceConnection'
-    2vnet1.Name
 
   - stage: plan
     displayName: plan
@@ -275,7 +272,6 @@ stages:
               command: 'apply'
               workingDirectory: '$(System.DefaultWorkingDirectory)/2vnet1'
               environmentServiceNameAzureRM: 'DevTestServiceConnection'
-    2vnet2.Name
 
   - stage: plan
     displayName: plan
