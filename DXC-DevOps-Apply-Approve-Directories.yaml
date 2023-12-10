@@ -45,7 +45,7 @@ stages:
               command: 'validate'
 
 
-  - stage: plan
+  - stage: "plan 1RG1"
     displayName: plan
     condition: succeeded('tfvalidate')
     dependsOn: tfvalidate
@@ -78,7 +78,7 @@ stages:
               environmentServiceNameAzureRM: 'DevTestServiceConnection'
 
   # Approve
-  - stage: Approve
+  - stage: "Approve 1RG1"
     displayName: Approve
     condition: succeeded('plan')
     dependsOn: plan
@@ -93,7 +93,7 @@ stages:
           notifyUsers: 'joseramon.lopez@dxc.com'
           instructions: 'Review the plan in the next hour'   
                 
-  - stage: tfdeploy
+  - stage: "tfdeploy 1RG1"
     condition: succeeded('Approve')
     dependsOn: Approve
     jobs:
@@ -121,7 +121,7 @@ stages:
               workingDirectory: '$(System.DefaultWorkingDirectory)/1RG1'
               environmentServiceNameAzureRM: 'DevTestServiceConnection'
 
-  - stage: plan
+  - stage: "plan 1RG2"
     displayName: plan
     condition: succeeded('tfvalidate')
     dependsOn: tfvalidate
@@ -154,7 +154,7 @@ stages:
               environmentServiceNameAzureRM: 'DevTestServiceConnection'
 
   # Approve
-  - stage: Approve
+  - stage: "Approve 1RG2"
     displayName: Approve
     condition: succeeded('plan')
     dependsOn: plan
@@ -169,7 +169,7 @@ stages:
           notifyUsers: 'joseramon.lopez@dxc.com'
           instructions: 'Review the plan in the next hour'   
                 
-  - stage: tfdeploy
+  - stage: "tfdeploy 1RG2"
     condition: succeeded('Approve')
     dependsOn: Approve
     jobs:
@@ -197,7 +197,7 @@ stages:
               workingDirectory: '$(System.DefaultWorkingDirectory)/1RG2'
               environmentServiceNameAzureRM: 'DevTestServiceConnection'
 
-  - stage: plan
+  - stage: "plan 2vnet1"
     displayName: plan
     condition: succeeded('tfvalidate')
     dependsOn: tfvalidate
@@ -230,7 +230,7 @@ stages:
               environmentServiceNameAzureRM: 'DevTestServiceConnection'
 
   # Approve
-  - stage: Approve
+  - stage: "Approve 2vnet1"
     displayName: Approve
     condition: succeeded('plan')
     dependsOn: plan
@@ -245,7 +245,7 @@ stages:
           notifyUsers: 'joseramon.lopez@dxc.com'
           instructions: 'Review the plan in the next hour'   
                 
-  - stage: tfdeploy
+  - stage: "tfdeploy 2vnet1"
     condition: succeeded('Approve')
     dependsOn: Approve
     jobs:
@@ -273,7 +273,7 @@ stages:
               workingDirectory: '$(System.DefaultWorkingDirectory)/2vnet1'
               environmentServiceNameAzureRM: 'DevTestServiceConnection'
 
-  - stage: plan
+  - stage: "plan 2vnet2"
     displayName: plan
     condition: succeeded('tfvalidate')
     dependsOn: tfvalidate
@@ -306,7 +306,7 @@ stages:
               environmentServiceNameAzureRM: 'DevTestServiceConnection'
 
   # Approve
-  - stage: Approve
+  - stage: "Approve 2vnet2"
     displayName: Approve
     condition: succeeded('plan')
     dependsOn: plan
@@ -321,7 +321,7 @@ stages:
           notifyUsers: 'joseramon.lopez@dxc.com'
           instructions: 'Review the plan in the next hour'   
                 
-  - stage: tfdeploy
+  - stage: "tfdeploy 2vnet2"
     condition: succeeded('Approve')
     dependsOn: Approve
     jobs:
