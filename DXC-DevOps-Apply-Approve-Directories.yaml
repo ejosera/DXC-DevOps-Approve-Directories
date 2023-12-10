@@ -1,0 +1,346 @@
+## Seccion: triger none
+trigger: none
+
+## Seccion: de pool
+pool:
+  vmImage: ubuntu-latest
+
+## Seccion: variables del backend
+variables:
+  bkstrgrg: "terraformtfstate"
+  bkstrg: "terraformtfstatecicd"
+  bkcontainer: "tfstate"
+  bkstrgkey: "terraformcicd"
+
+## Seccion: Stages
+stages:
+
+## Seccion: Stages
+  - stage: tfvalidate
+    jobs:
+      - job: validate
+        continueOnError: false
+        steps:
+          # install
+          - task: TerraformInstaller@1
+            displayName: tfinstall
+            inputs:
+              terraformVersion: 'latest'
+          # init
+          - task: TerraformTaskV4@4
+            displayName: init
+            inputs:
+              provider: 'azurerm'
+              command: 'init'
+              backendServiceArm: 'Visual Studio Enterprise(4abab78e-cc44-4dc6-b6c0-35280c169a76)'
+              backendAzureRmResourceGroupName: '$(bkstrgrg)'
+              backendAzureRmStorageAccountName: '$(bkstrg)'
+              backendAzureRmContainerName: '$(bkcontainer)'
+              backendAzureRmKey: '$(bkstrgkey)'
+          # validate
+          - task: TerraformTaskV4@4
+            displayName: validate
+            inputs:
+              provider: 'azurerm'
+              command: 'validate'
+
+    1RG1.Name
+
+  - stage: plan
+    displayName: plan
+    condition: succeeded('tfvalidate')
+    dependsOn: tfvalidate
+    jobs:
+      - job: plan
+        steps:
+          # install terraform
+          - task: TerraformInstaller@1
+            displayName: plan - install terraform
+            inputs:
+              terraformVersion: 'latest'
+          # init
+          - task: TerraformTaskV4@4
+            displayName: Initialize Terraform
+            inputs:
+              provider: 'azurerm'
+              command: 'init'
+              backendServiceArm: 'Visual Studio Enterprise(4abab78e-cc44-4dc6-b6c0-35280c169a76)'
+              backendAzureRmResourceGroupName: '$(bkstrgrg)'
+              backendAzureRmStorageAccountName: '$(bkstrg)`'
+              backendAzureRmContainerName: '$(bkcontainer)'
+              backendAzureRmKey: '$(bkstrgkey)'
+          # plan
+          - task: TerraformTaskV4@4
+            displayName: Plan Terraform Deployment
+            inputs:
+              provider: 'azurerm'
+              command: 'plan'
+              environmentServiceNameAzureRM: 'DevTestServiceConnection'
+
+  # Approve
+  - stage: Approve
+    displayName: Approve
+    condition: succeeded('plan')
+    dependsOn: plan
+    jobs:
+    - job: approve
+      displayName: Wait for approval
+      pool: server
+      steps: 
+      - task: ManualValidation@0
+        timeoutInMinutes: 60
+        inputs:
+          notifyUsers: 'joseramon.lopez@dxc.com'
+          instructions: 'Review the plan in the next hour'   
+                
+  - stage: tfdeploy
+    condition: succeeded('Approve')
+    dependsOn: Approve
+    jobs:
+      - job: apply
+        steps:
+          - task: TerraformInstaller@1
+            displayName: tfinstall
+            inputs:
+              terraformVersion: 'latest'
+          - task: TerraformTaskV4@4
+            displayName: init
+            inputs:
+              provider: 'azurerm'
+              command: 'init'
+              backendServiceArm: 'Visual Studio Enterprise(4abab78e-cc44-4dc6-b6c0-35280c169a76)'
+              backendAzureRmResourceGroupName: '$(bkstrgrg)'
+              backendAzureRmStorageAccountName: '$(bkstrg)'
+              backendAzureRmContainerName: '$(bkcontainer)'
+              backendAzureRmKey: '$(bkstrgkey)'
+          - task: TerraformTaskV4@4
+            displayName: apply
+            inputs:
+              provider: 'azurerm'
+              command: 'apply'
+              environmentServiceNameAzureRM: 'DevTestServiceConnection'
+    1RG2.Name
+
+  - stage: plan
+    displayName: plan
+    condition: succeeded('tfvalidate')
+    dependsOn: tfvalidate
+    jobs:
+      - job: plan
+        steps:
+          # install terraform
+          - task: TerraformInstaller@1
+            displayName: plan - install terraform
+            inputs:
+              terraformVersion: 'latest'
+          # init
+          - task: TerraformTaskV4@4
+            displayName: Initialize Terraform
+            inputs:
+              provider: 'azurerm'
+              command: 'init'
+              backendServiceArm: 'Visual Studio Enterprise(4abab78e-cc44-4dc6-b6c0-35280c169a76)'
+              backendAzureRmResourceGroupName: '$(bkstrgrg)'
+              backendAzureRmStorageAccountName: '$(bkstrg)`'
+              backendAzureRmContainerName: '$(bkcontainer)'
+              backendAzureRmKey: '$(bkstrgkey)'
+          # plan
+          - task: TerraformTaskV4@4
+            displayName: Plan Terraform Deployment
+            inputs:
+              provider: 'azurerm'
+              command: 'plan'
+              environmentServiceNameAzureRM: 'DevTestServiceConnection'
+
+  # Approve
+  - stage: Approve
+    displayName: Approve
+    condition: succeeded('plan')
+    dependsOn: plan
+    jobs:
+    - job: approve
+      displayName: Wait for approval
+      pool: server
+      steps: 
+      - task: ManualValidation@0
+        timeoutInMinutes: 60
+        inputs:
+          notifyUsers: 'joseramon.lopez@dxc.com'
+          instructions: 'Review the plan in the next hour'   
+                
+  - stage: tfdeploy
+    condition: succeeded('Approve')
+    dependsOn: Approve
+    jobs:
+      - job: apply
+        steps:
+          - task: TerraformInstaller@1
+            displayName: tfinstall
+            inputs:
+              terraformVersion: 'latest'
+          - task: TerraformTaskV4@4
+            displayName: init
+            inputs:
+              provider: 'azurerm'
+              command: 'init'
+              backendServiceArm: 'Visual Studio Enterprise(4abab78e-cc44-4dc6-b6c0-35280c169a76)'
+              backendAzureRmResourceGroupName: '$(bkstrgrg)'
+              backendAzureRmStorageAccountName: '$(bkstrg)'
+              backendAzureRmContainerName: '$(bkcontainer)'
+              backendAzureRmKey: '$(bkstrgkey)'
+          - task: TerraformTaskV4@4
+            displayName: apply
+            inputs:
+              provider: 'azurerm'
+              command: 'apply'
+              environmentServiceNameAzureRM: 'DevTestServiceConnection'
+    2vnet1.Name
+
+  - stage: plan
+    displayName: plan
+    condition: succeeded('tfvalidate')
+    dependsOn: tfvalidate
+    jobs:
+      - job: plan
+        steps:
+          # install terraform
+          - task: TerraformInstaller@1
+            displayName: plan - install terraform
+            inputs:
+              terraformVersion: 'latest'
+          # init
+          - task: TerraformTaskV4@4
+            displayName: Initialize Terraform
+            inputs:
+              provider: 'azurerm'
+              command: 'init'
+              backendServiceArm: 'Visual Studio Enterprise(4abab78e-cc44-4dc6-b6c0-35280c169a76)'
+              backendAzureRmResourceGroupName: '$(bkstrgrg)'
+              backendAzureRmStorageAccountName: '$(bkstrg)`'
+              backendAzureRmContainerName: '$(bkcontainer)'
+              backendAzureRmKey: '$(bkstrgkey)'
+          # plan
+          - task: TerraformTaskV4@4
+            displayName: Plan Terraform Deployment
+            inputs:
+              provider: 'azurerm'
+              command: 'plan'
+              environmentServiceNameAzureRM: 'DevTestServiceConnection'
+
+  # Approve
+  - stage: Approve
+    displayName: Approve
+    condition: succeeded('plan')
+    dependsOn: plan
+    jobs:
+    - job: approve
+      displayName: Wait for approval
+      pool: server
+      steps: 
+      - task: ManualValidation@0
+        timeoutInMinutes: 60
+        inputs:
+          notifyUsers: 'joseramon.lopez@dxc.com'
+          instructions: 'Review the plan in the next hour'   
+                
+  - stage: tfdeploy
+    condition: succeeded('Approve')
+    dependsOn: Approve
+    jobs:
+      - job: apply
+        steps:
+          - task: TerraformInstaller@1
+            displayName: tfinstall
+            inputs:
+              terraformVersion: 'latest'
+          - task: TerraformTaskV4@4
+            displayName: init
+            inputs:
+              provider: 'azurerm'
+              command: 'init'
+              backendServiceArm: 'Visual Studio Enterprise(4abab78e-cc44-4dc6-b6c0-35280c169a76)'
+              backendAzureRmResourceGroupName: '$(bkstrgrg)'
+              backendAzureRmStorageAccountName: '$(bkstrg)'
+              backendAzureRmContainerName: '$(bkcontainer)'
+              backendAzureRmKey: '$(bkstrgkey)'
+          - task: TerraformTaskV4@4
+            displayName: apply
+            inputs:
+              provider: 'azurerm'
+              command: 'apply'
+              environmentServiceNameAzureRM: 'DevTestServiceConnection'
+    2vnet2.Name
+
+  - stage: plan
+    displayName: plan
+    condition: succeeded('tfvalidate')
+    dependsOn: tfvalidate
+    jobs:
+      - job: plan
+        steps:
+          # install terraform
+          - task: TerraformInstaller@1
+            displayName: plan - install terraform
+            inputs:
+              terraformVersion: 'latest'
+          # init
+          - task: TerraformTaskV4@4
+            displayName: Initialize Terraform
+            inputs:
+              provider: 'azurerm'
+              command: 'init'
+              backendServiceArm: 'Visual Studio Enterprise(4abab78e-cc44-4dc6-b6c0-35280c169a76)'
+              backendAzureRmResourceGroupName: '$(bkstrgrg)'
+              backendAzureRmStorageAccountName: '$(bkstrg)`'
+              backendAzureRmContainerName: '$(bkcontainer)'
+              backendAzureRmKey: '$(bkstrgkey)'
+          # plan
+          - task: TerraformTaskV4@4
+            displayName: Plan Terraform Deployment
+            inputs:
+              provider: 'azurerm'
+              command: 'plan'
+              environmentServiceNameAzureRM: 'DevTestServiceConnection'
+
+  # Approve
+  - stage: Approve
+    displayName: Approve
+    condition: succeeded('plan')
+    dependsOn: plan
+    jobs:
+    - job: approve
+      displayName: Wait for approval
+      pool: server
+      steps: 
+      - task: ManualValidation@0
+        timeoutInMinutes: 60
+        inputs:
+          notifyUsers: 'joseramon.lopez@dxc.com'
+          instructions: 'Review the plan in the next hour'   
+                
+  - stage: tfdeploy
+    condition: succeeded('Approve')
+    dependsOn: Approve
+    jobs:
+      - job: apply
+        steps:
+          - task: TerraformInstaller@1
+            displayName: tfinstall
+            inputs:
+              terraformVersion: 'latest'
+          - task: TerraformTaskV4@4
+            displayName: init
+            inputs:
+              provider: 'azurerm'
+              command: 'init'
+              backendServiceArm: 'Visual Studio Enterprise(4abab78e-cc44-4dc6-b6c0-35280c169a76)'
+              backendAzureRmResourceGroupName: '$(bkstrgrg)'
+              backendAzureRmStorageAccountName: '$(bkstrg)'
+              backendAzureRmContainerName: '$(bkcontainer)'
+              backendAzureRmKey: '$(bkstrgkey)'
+          - task: TerraformTaskV4@4
+            displayName: apply
+            inputs:
+              provider: 'azurerm'
+              command: 'apply'
+              environmentServiceNameAzureRM: 'DevTestServiceConnection'

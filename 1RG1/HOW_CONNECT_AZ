@@ -1,0 +1,17 @@
+##################################################################################################
+############# Pasos iniciales para conectarse al Tenant y Suscripción donde se va a desplegar todo.
+##################################################################################################
+#
+######## CLI
+#
+# az login --tenant <tenant_id>             <-- logear al tenant indicado
+# az account tenant list --output table     <-- listar tenants disponibles
+# az account set --subscription <sub_id>    <-- seleccionar suscripciones
+# az account show --output table            <-- ver suscripcion a la que estás conectado
+# az account list --output table            <-- ver lista completa de suscripciones
+#
+######## OPTIONAL not recommended - PowerShell
+#
+# Connect-AzAccount -Tenant <tenant_id>
+# Select-AzSubscription -Tenant '<tenant_id>'
+# Select-AzSubscription -SubscriptionId '<sub_id>'

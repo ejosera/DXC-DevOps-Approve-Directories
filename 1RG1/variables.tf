@@ -1,0 +1,35 @@
+################################### Variables de RG ###################################
+variable "rg_location" {}
+variable "rg_name" {}
+##################################### Variables de tags ###############################
+variable "na_tag" {}
+variable "environment_tag" {}
+variable "owner_tag" {}
+variable "projectname_tag" {}
+variable "servicedescription_tag" {}
+variable "status_tag" {}
+variable "provider_tag" {}
+variable "temporal_tag" {}
+variable "compliance_tag" {}
+variable "confidentiality_tag" {}
+variable "integrity_tag" {}
+variable "availability_tag" {}
+variable "criticality_tag" {}
+variable "environmenttech_tag" {}
+variable "ssrornssrid_tag" {}
+variable "location_tag" {}
+variable "budget_tag" {}
+variable "expirationdate_tag" {}
+variable "maintenancewindow_tag" {}
+variable "ba_tag" {}
+variable "creationdate_tag" {}
+variable "tpo_tag" {}
+variable "eje_tag" {}
+variable "speed_tag" {}
+variable "seat_tag" {}
+variable "coverage_tag" {}
+variable "facturable_tag" {}
+variable "bu_tag" {}
+variable "costcenter_tag" {}
+variable "servicebusiness_tag" {}
+variable "hus_tag" {}
