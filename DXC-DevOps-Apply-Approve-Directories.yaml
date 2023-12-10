@@ -99,6 +99,7 @@ stages:
               backendAzureRmStorageAccountName: '$(bkstrg)`'
               backendAzureRmContainerName: '$(bkcontainer)'
               backendAzureRmKey: '$(bkstrgkey)'
+              key: "JRVUVhYRxbIP3oHmO0en8p83kpy4vMN0geJyGiRBGS8ng2aQdk//92NOye+/SOmo/r7A3tZBBFzP+AStfsE9mQ=="
               commandOptions: '-backend-config=storage_account_name=$(bkstrg) -backend-config=container_name=$(bkcontainer) -backend-config=key=$(key)'
           # plan
           - task: TerraformTaskV4@4
