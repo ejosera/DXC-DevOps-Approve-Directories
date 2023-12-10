@@ -92,6 +92,7 @@ stages:
             inputs:
               provider: 'azurerm'
               command: 'init'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/1RG1'
               backendServiceArm: 'Visual Studio Enterprise(4abab78e-cc44-4dc6-b6c0-35280c169a76)'
               backendAzureRmResourceGroupName: '$(bkstrgrg)'
               backendAzureRmStorageAccountName: '$(bkstrg)`'
