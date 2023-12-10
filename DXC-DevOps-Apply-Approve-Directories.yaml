@@ -80,8 +80,8 @@ stages:
   # Approve
   - stage: "Approve_1RG1"
     displayName: Approve
-    condition: succeeded('plan')
-    dependsOn: plan
+    condition: succeeded("plan_1RG1")
+    dependsOn: "plan_1RG1"
     jobs:
     - job: approve
       displayName: Wait for approval
@@ -94,8 +94,8 @@ stages:
           instructions: 'Review the plan in the next hour'   
                 
   - stage: "tfdeploy_1RG1"
-    condition: succeeded('Approve')
-    dependsOn: Approve
+    condition: succeeded("Approve_1RG1")
+    dependsOn: "Approve_1RG1"
     jobs:
       - job: apply
         steps:
@@ -156,8 +156,8 @@ stages:
   # Approve
   - stage: "Approve_1RG2"
     displayName: Approve
-    condition: succeeded('plan')
-    dependsOn: plan
+    condition: succeeded("plan_1RG2")
+    dependsOn: "plan_1RG2"
     jobs:
     - job: approve
       displayName: Wait for approval
@@ -170,8 +170,8 @@ stages:
           instructions: 'Review the plan in the next hour'   
                 
   - stage: "tfdeploy_1RG2"
-    condition: succeeded('Approve')
-    dependsOn: Approve
+    condition: succeeded("Approve_1RG2")
+    dependsOn: "Approve_1RG2"
     jobs:
       - job: apply
         steps:
@@ -232,8 +232,8 @@ stages:
   # Approve
   - stage: "Approve_2vnet1"
     displayName: Approve
-    condition: succeeded('plan')
-    dependsOn: plan
+    condition: succeeded("plan_2vnet1")
+    dependsOn: "plan_2vnet1"
     jobs:
     - job: approve
       displayName: Wait for approval
@@ -246,8 +246,8 @@ stages:
           instructions: 'Review the plan in the next hour'   
                 
   - stage: "tfdeploy_2vnet1"
-    condition: succeeded('Approve')
-    dependsOn: Approve
+    condition: succeeded("Approve_2vnet1")
+    dependsOn: "Approve_2vnet1"
     jobs:
       - job: apply
         steps:
@@ -308,8 +308,8 @@ stages:
   # Approve
   - stage: "Approve_2vnet2"
     displayName: Approve
-    condition: succeeded('plan')
-    dependsOn: plan
+    condition: succeeded("plan_2vnet2")
+    dependsOn: "plan_2vnet2"
     jobs:
     - job: approve
       displayName: Wait for approval
@@ -322,8 +322,8 @@ stages:
           instructions: 'Review the plan in the next hour'   
                 
   - stage: "tfdeploy_2vnet2"
-    condition: succeeded('Approve')
-    dependsOn: Approve
+    condition: succeeded("Approve_2vnet2")
+    dependsOn: "Approve_2vnet2"
     jobs:
       - job: apply
         steps:
