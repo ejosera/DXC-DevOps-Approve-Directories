@@ -80,7 +80,7 @@ stages:
   # Approve
   - stage: "Approve_1RG1"
     displayName: Approve
-    condition: succeeded("plan_1RG1")
+    condition: succeeded('plan_1RG1')
     dependsOn: "plan_1RG1"
     jobs:
     - job: approve
