@@ -33,7 +33,7 @@ stages:
             inputs:
               provider: 'azurerm'
               command: 'init'
-              backendServiceArm: 'Visual Studio Enterprise(4abab78e-cc44-4dc6-b6c0-35280c169a76)'
+              backendServiceArm: 'cicdjr-cide-e4d5da9d-b9f6-4393-9a87-c301c4dec4ca'
               backendAzureRmResourceGroupName: '$(bkstrgrg)'
               backendAzureRmStorageAccountName: '$(bkstrg)'
               backendAzureRmContainerName: '$(bkcontainer)'
@@ -63,7 +63,7 @@ stages:
             inputs:
               provider: 'azurerm'
               command: 'init'
-              backendServiceArm: 'Visual Studio Enterprise(4abab78e-cc44-4dc6-b6c0-35280c169a76)'
+              backendServiceArm: 'cicdjr-cide-e4d5da9d-b9f6-4393-9a87-c301c4dec4ca'
               backendAzureRmResourceGroupName: '$(bkstrgrg)'
               backendAzureRmStorageAccountName: '$(bkstrg)'
               backendAzureRmContainerName: '$(bkcontainer)'
@@ -94,7 +94,7 @@ stages:
               provider: 'azurerm'
               command: 'init'
               workingDirectory: '$(System.DefaultWorkingDirectory)/1RG1'
-              backendServiceArm: 'Visual Studio Enterprise(4abab78e-cc44-4dc6-b6c0-35280c169a76)'
+              backendServiceArm: 'cicdjr-cide-e4d5da9d-b9f6-4393-9a87-c301c4dec4ca'
               backendAzureRmResourceGroupName: '$(bkstrgrg)'
               backendAzureRmStorageAccountName: '$(bkstrg)`'
               backendAzureRmContainerName: '$(bkcontainer)'
@@ -141,7 +141,7 @@ stages:
             inputs:
               provider: 'azurerm'
               command: 'init'
-              backendServiceArm: 'Visual Studio Enterprise(4abab78e-cc44-4dc6-b6c0-35280c169a76)'
+              backendServiceArm: 'cicdjr-cide-e4d5da9d-b9f6-4393-9a87-c301c4dec4ca'
               backendAzureRmResourceGroupName: '$(bkstrgrg)'
               backendAzureRmStorageAccountName: '$(bkstrg)'
               backendAzureRmContainerName: '$(bkcontainer)'
@@ -171,7 +171,7 @@ stages:
             inputs:
               provider: 'azurerm'
               command: 'init'
-              backendServiceArm: 'Visual Studio Enterprise(4abab78e-cc44-4dc6-b6c0-35280c169a76)'
+              backendServiceArm: 'cicdjr-cide-e4d5da9d-b9f6-4393-9a87-c301c4dec4ca'
               backendAzureRmResourceGroupName: '$(bkstrgrg)'
               backendAzureRmStorageAccountName: '$(bkstrg)'
               backendAzureRmContainerName: '$(bkcontainer)'
@@ -201,7 +201,7 @@ stages:
             inputs:
               provider: 'azurerm'
               command: 'init'
-              backendServiceArm: 'Visual Studio Enterprise(4abab78e-cc44-4dc6-b6c0-35280c169a76)'
+              backendServiceArm: 'cicdjr-cide-e4d5da9d-b9f6-4393-9a87-c301c4dec4ca'
               backendAzureRmResourceGroupName: '$(bkstrgrg)'
               backendAzureRmStorageAccountName: '$(bkstrg)`'
               backendAzureRmContainerName: '$(bkcontainer)'
@@ -246,7 +246,7 @@ stages:
             inputs:
               provider: 'azurerm'
               command: 'init'
-              backendServiceArm: 'Visual Studio Enterprise(4abab78e-cc44-4dc6-b6c0-35280c169a76)'
+              backendServiceArm: 'cicdjr-cide-e4d5da9d-b9f6-4393-9a87-c301c4dec4ca'
               backendAzureRmResourceGroupName: '$(bkstrgrg)'
               backendAzureRmStorageAccountName: '$(bkstrg)'
               backendAzureRmContainerName: '$(bkcontainer)'
@@ -276,7 +276,7 @@ stages:
             inputs:
               provider: 'azurerm'
               command: 'init'
-              backendServiceArm: 'Visual Studio Enterprise(4abab78e-cc44-4dc6-b6c0-35280c169a76)'
+              backendServiceArm: 'cicdjr-cide-e4d5da9d-b9f6-4393-9a87-c301c4dec4ca'
               backendAzureRmResourceGroupName: '$(bkstrgrg)'
               backendAzureRmStorageAccountName: '$(bkstrg)'
               backendAzureRmContainerName: '$(bkcontainer)'
@@ -306,7 +306,7 @@ stages:
             inputs:
               provider: 'azurerm'
               command: 'init'
-              backendServiceArm: 'Visual Studio Enterprise(4abab78e-cc44-4dc6-b6c0-35280c169a76)'
+              backendServiceArm: 'cicdjr-cide-e4d5da9d-b9f6-4393-9a87-c301c4dec4ca'
               backendAzureRmResourceGroupName: '$(bkstrgrg)'
               backendAzureRmStorageAccountName: '$(bkstrg)`'
               backendAzureRmContainerName: '$(bkcontainer)'
@@ -351,7 +351,7 @@ stages:
             inputs:
               provider: 'azurerm'
               command: 'init'
-              backendServiceArm: 'Visual Studio Enterprise(4abab78e-cc44-4dc6-b6c0-35280c169a76)'
+              backendServiceArm: 'cicdjr-cide-e4d5da9d-b9f6-4393-9a87-c301c4dec4ca'
               backendAzureRmResourceGroupName: '$(bkstrgrg)'
               backendAzureRmStorageAccountName: '$(bkstrg)'
               backendAzureRmContainerName: '$(bkcontainer)'
@@ -381,7 +381,7 @@ stages:
             inputs:
               provider: 'azurerm'
               command: 'init'
-              backendServiceArm: 'Visual Studio Enterprise(4abab78e-cc44-4dc6-b6c0-35280c169a76)'
+              backendServiceArm: 'cicdjr-cide-e4d5da9d-b9f6-4393-9a87-c301c4dec4ca'
               backendAzureRmResourceGroupName: '$(bkstrgrg)'
               backendAzureRmStorageAccountName: '$(bkstrg)'
               backendAzureRmContainerName: '$(bkcontainer)'
@@ -411,7 +411,7 @@ stages:
             inputs:
               provider: 'azurerm'
               command: 'init'
-              backendServiceArm: 'Visual Studio Enterprise(4abab78e-cc44-4dc6-b6c0-35280c169a76)'
+              backendServiceArm: 'cicdjr-cide-e4d5da9d-b9f6-4393-9a87-c301c4dec4ca'
               backendAzureRmResourceGroupName: '$(bkstrgrg)'
               backendAzureRmStorageAccountName: '$(bkstrg)`'
               backendAzureRmContainerName: '$(bkcontainer)'
@@ -456,7 +456,7 @@ stages:
             inputs:
               provider: 'azurerm'
               command: 'init'
-              backendServiceArm: 'Visual Studio Enterprise(4abab78e-cc44-4dc6-b6c0-35280c169a76)'
+              backendServiceArm: 'cicdjr-cide-e4d5da9d-b9f6-4393-9a87-c301c4dec4ca'
               backendAzureRmResourceGroupName: '$(bkstrgrg)'
               backendAzureRmStorageAccountName: '$(bkstrg)'
               backendAzureRmContainerName: '$(bkcontainer)'
